@@ -19,6 +19,15 @@ DefaultContentLanguage = "zh"
   keywords = []
   schedule = []
 
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+  [[module.mounts]]
+    source = "themes/osposummit/static"
+    target = "static"
+
 [languages.en]
 languageName = "English"
 weight = 1

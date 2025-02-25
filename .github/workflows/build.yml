@@ -63,11 +63,21 @@ jobs:
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
-            hugo -b https://robinv8.github.io/ospo-events/$VERSION/
+            hugo -b https://robinv8.github.io/ospo-events/$VERSION/ \
+              --config config.toml \
+              --cleanDestinationDir \
+              --minify \
+              --environment production \
+              --baseURL https://robinv8.github.io/ospo-events/$VERSION/
             mkdir -p public/$VERSION
             cp -r public/* public/$VERSION/ 2>/dev/null || true
           else
-            hugo -b https://robinv8.github.io/ospo-events/
+            hugo -b https://robinv8.github.io/ospo-events/ \
+              --config config.toml \
+              --cleanDestinationDir \
+              --minify \
+              --environment production \
+              --baseURL https://robinv8.github.io/ospo-events/
           fi
   
       - name: Deploy
