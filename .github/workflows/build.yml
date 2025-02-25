@@ -49,8 +49,8 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
             echo "version=$VERSION" >> $GITHUB_OUTPUT
-            echo "base_url=https://robinv8.github.io/ospo-events/versions/$VERSION/" >> $GITHUB_OUTPUT
-            echo "publish_dir=versions/$VERSION" >> $GITHUB_OUTPUT
+            echo "base_url=https://robinv8.github.io/ospo-events/$VERSION/" >> $GITHUB_OUTPUT
+            echo "publish_dir=$VERSION" >> $GITHUB_OUTPUT
           else
             echo "version=latest" >> $GITHUB_OUTPUT
             echo "base_url=https://robinv8.github.io/ospo-events/" >> $GITHUB_OUTPUT
