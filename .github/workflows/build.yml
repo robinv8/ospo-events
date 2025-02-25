@@ -22,6 +22,7 @@ on:
     branches: ['main']
     tags:
       - 2024
+      - 2025
   pull_request:
 
 jobs:
