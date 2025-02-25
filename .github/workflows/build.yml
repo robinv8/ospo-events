@@ -61,7 +61,11 @@ jobs:
 
       - name: Build
         run: |
-          hugo --baseURL ${{ steps.config.outputs.base_url }}
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            hugo -b https://robinv8.github.io/ospo-events/${{ steps.config.outputs.version }}/ -d public/${{ steps.config.outputs.publish_dir }}
+          else
+            hugo -b https://robinv8.github.io/ospo-events/
+          fi
   
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -74,4 +78,5 @@ jobs:
           publish_dir: ./public
           publish_branch: ${{ steps.config.outputs.publish_branch }}
           destination_dir: ${{ steps.config.outputs.publish_dir }}
+          keep_files: true
           allow_empty_commit: true
