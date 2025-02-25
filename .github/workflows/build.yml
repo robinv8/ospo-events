@@ -52,10 +52,12 @@ jobs:
             echo "version=$VERSION" >> $GITHUB_OUTPUT
             echo "base_url=https://robinv8.github.io/ospo-events/$VERSION/" >> $GITHUB_OUTPUT
             echo "publish_dir=$VERSION" >> $GITHUB_OUTPUT
+            echo "publish_branch=gh-pages-$VERSION" >> $GITHUB_OUTPUT
           else
             echo "version=latest" >> $GITHUB_OUTPUT
             echo "base_url=https://robinv8.github.io/ospo-events/" >> $GITHUB_OUTPUT
             echo "publish_dir=." >> $GITHUB_OUTPUT
+            echo "publish_branch=gh-pages" >> $GITHUB_OUTPUT
           fi
 
       - name: Build
@@ -71,6 +73,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: gh-pages
+          publish_branch: ${{ steps.config.outputs.publish_branch }}
           destination_dir: ${{ steps.config.outputs.publish_dir }}
           allow_empty_commit: true
