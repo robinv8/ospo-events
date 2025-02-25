@@ -62,7 +62,10 @@ jobs:
       - name: Build
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
-            hugo -b https://robinv8.github.io/ospo-events/${{ steps.config.outputs.version }}/ -d public/${{ steps.config.outputs.publish_dir }}
+            VERSION=${GITHUB_REF#refs/tags/}
+            hugo -b https://robinv8.github.io/ospo-events/$VERSION/
+            mkdir -p public/$VERSION
+            cp -r public/* public/$VERSION/ 2>/dev/null || true
           else
             hugo -b https://robinv8.github.io/ospo-events/
           fi
@@ -76,7 +79,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: ${{ steps.config.outputs.publish_branch }}
-          destination_dir: ${{ steps.config.outputs.publish_dir }}
+          publish_branch: gh-pages
           keep_files: true
           allow_empty_commit: true
+          force_orphan: false
