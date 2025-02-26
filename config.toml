@@ -1,5 +1,5 @@
 # set the baseURL for CI verification
-baseURL = "https://robinv8.github.io/ospo-events/"
+baseURL = "https://ospo.rnode.me/"
 title2 = "The 2nd OSPO Summit"
 title = "第二届开源管理办公室年度峰会"
 theme = "osposummit"

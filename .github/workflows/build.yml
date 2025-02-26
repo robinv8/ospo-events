@@ -50,11 +50,11 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
             echo "version=$VERSION" >> $GITHUB_OUTPUT
-            echo "base_url=https://robinv8.github.io/ospo-events/" >> $GITHUB_OUTPUT
+            echo "base_url=https://ospo.rnode.me/" >> $GITHUB_OUTPUT
             echo "publish_dir=$VERSION" >> $GITHUB_OUTPUT
           else
             echo "version=latest" >> $GITHUB_OUTPUT
-            echo "base_url=https://robinv8.github.io/ospo-events/" >> $GITHUB_OUTPUT
+            echo "base_url=https://ospo.rnode.me/" >> $GITHUB_OUTPUT
             echo "publish_dir=." >> $GITHUB_OUTPUT
           fi
           echo "publish_branch=gh-pages" >> $GITHUB_OUTPUT
@@ -63,21 +63,21 @@ jobs:
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
-            hugo -b https://robinv8.github.io/ospo-events/$VERSION/ \
+            hugo -b https://ospo.rnode.me/$VERSION/ \
               --config config.toml \
               --cleanDestinationDir \
               --minify \
               --environment production \
-              --baseURL https://robinv8.github.io/ospo-events/$VERSION/
+              --baseURL https://ospo.rnode.me/$VERSION/
             mkdir -p public/$VERSION
             cp -r public/* public/$VERSION/ 2>/dev/null || true
           else
-            hugo -b https://robinv8.github.io/ospo-events/ \
+            hugo -b https://ospo.rnode.me/ \
               --config config.toml \
               --cleanDestinationDir \
               --minify \
               --environment production \
-              --baseURL https://robinv8.github.io/ospo-events/
+              --baseURL https://ospo.rnode.me/
           fi
   
       - name: Deploy
